@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-function ProgrammingQuote(props) {
+function ProgrammingQuote() {
   let [quote, setQuote] = useState({});
 
   useEffect(() => {
