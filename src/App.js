@@ -14,7 +14,6 @@ function App() {
     lat: 40.756795,
     lng: -73.954298,
   });
-
   //User Location
   function getLocation() {
     if (navigator.geolocation) {
@@ -37,12 +36,15 @@ function App() {
   return (
     <div>
       <ProgrammingQuote />
-      {/* <PlacesAutocomplete setDestination={setDestination} />
+
+      <PlacesAutocomplete setDestination={setDestination} />
+
       <MapLoader
-        googleMapURL="https://maps.googleapis.com/maps/api/js?key="
+        googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbSQp4JDEiYp8mOJY1hLB55ZYNQgaPZcI"
         loadingElement={<div style={{ height: `250px` }} />}
       />
-      <RouteDetail origin={origin} destination={destination} /> */}
+
+      <RouteDetail origin={origin} destination={destination} />
     </div>
   );
 }
