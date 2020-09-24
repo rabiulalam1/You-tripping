@@ -6,12 +6,12 @@ const RouteDetails = (props) => {
   useEffect(() => {
     async function routeLookUp() {
       let res = await axios.get(
-        `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/directions/json?origin=${props.origin.lat},${props.origin.lng}&destination=${props.destination.lat},${props.destination.lng}&key=AIzaSyAbSQp4JDEiYp8mOJY1hLB55ZYNQgaPZcI`
+        `https://maps.googleapis.com/maps/api/directions/json?origin=${props.origin.lat},${props.origin.lng}&destination=${props.destination.lat},${props.destination.lng}&key=${process.envREACT_APP_GOOGLE_KEY}`
       );
-
       setRouteDetail(res.data.routes[0].legs[0]);
     }
     routeLookUp();
+    props.setRouteInfo(routeDetail);
   }, [props]);
   return (
     <div>
