@@ -1,12 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import axios from "axios";
+import aiports from "./airports.json";
 
-const SkyScanner = () => {
-  let [flightDetail, setFlightDetail] = useState({});
-
+const SkyScanner = (props) => {
+  let originState = props.dir.routes?.[0].legs[0].start_address
+    .split(", ")
+    .slice(-2)[0]
+    .split(" ")[0];
+  let destinationState = props.dir.routes?.[0].legs[0].end_address
+    .split(", ")
+    .slice(-2)[0]
+    .split(" ")[0];
+  let destinationAirpot = aiports?.[0].destinationState;
+  let orginAirport = aiports?.[0].orginAirportState;
   useEffect(() => {
     async function flightLookUp() {
-      let res = await axios({
+      console.log(aiports?.[0].destinationState);
+      await axios({
         method: "GET",
         url:
           "https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/MCO-sky/JFK-sky/2020-09-26",
@@ -14,8 +24,7 @@ const SkyScanner = () => {
           "content-type": "application/octet-stream",
           "x-rapidapi-host":
             "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
-          "x-rapidapi-key":
-            "73ece737a2msh7d8823bf943c46bp144484jsncbe8b93833d6",
+          "x-rapidapi-key": "",
           useQueryString: true,
         },
         params: {
@@ -29,7 +38,7 @@ const SkyScanner = () => {
           console.log(error);
         });
     }
-    flightLookUp();
+    flightLookUp;
   }, []);
 
   return (

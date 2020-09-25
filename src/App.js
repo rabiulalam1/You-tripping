@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/*global google*/
+import React, { useState, useEffect } from "react";
 import { withScriptjs } from "react-google-maps";
 import "./App.css";
 
@@ -10,12 +11,12 @@ import RouteDetail from "./Components/RouteDetails";
 import SkyScanner from "./Components/SkyScanner";
 
 function App() {
+  const [dir, setDir] = useState({});
   const [origin, setOrigin] = useState({ lat: 40.756795, lng: -73.954298 });
   const [destination, setDestination] = useState({
     lat: 40.756795,
     lng: -73.954298,
   });
-  const [routeInfo, setRouteInfo] = useState({});
   //User Location
   function getLocation() {
     if (navigator.geolocation) {
@@ -30,10 +31,32 @@ function App() {
       lng: position.coords.longitude,
     });
   }
-  console.log(routeInfo.distance);
+
+  const updateDirections = () => {
+    const directionsService = new google.maps.DirectionsService();
+    directionsService.route(
+      {
+        origin: origin,
+        destination: destination,
+        travelMode: google.maps.TravelMode.DRIVING,
+      },
+      (result, status) => {
+        if (status === google.maps.DirectionsStatus.OK) {
+          //console.log(result);
+          setDir(result);
+        } else {
+          console.error(`error fetching directions ${result}`);
+        }
+      }
+    );
+  };
+
+  useEffect(() => {
+    updateDirections();
+  }, [destination]);
   //Google Map Loader
-  const MapLoader = withScriptjs(() => Map({ origin, destination }));
-  console.log(process.env);
+  const MapLoader = withScriptjs(() => Map({ dir }));
+  let url = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_KEY}`;
   //Return starts here
   return (
     <div>
@@ -42,17 +65,13 @@ function App() {
       <PlacesAutocomplete setDestination={setDestination} />
 
       <MapLoader
-        googleMapURL=`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_KEY}`
+        googleMapURL={url}
         loadingElement={<div style={{ height: `250px` }} />}
       />
 
-      <RouteDetail
-        origin={origin}
-        destination={destination}
-        setRouteInfo={setRouteInfo}
-      />
+      <RouteDetail dir={dir} />
 
-      <SkyScanner />
+      <SkyScanner dir={dir} />
     </div>
   );
 }
