@@ -25,6 +25,8 @@ function App() {
   const [toAirport, setToAirport] = useState("JFK");
   const [flightDetail, setFlightDetail] = useState({});
   const [yelpRestaurants, setYelpRestaurants] = useState({});
+  const [weather, setWeather] = useState({});
+  const [events, setEvents] = useState({});
 
   //User Location
   function getLocation() {
@@ -52,6 +54,7 @@ function App() {
       (result, status) => {
         if (status === google.maps.DirectionsStatus.OK) {
           setDir(result);
+          updateEvents(result);
           let originState = result.routes?.[0].legs[0].start_address
             .split(", ")
             .slice(-2)[0]
@@ -65,20 +68,21 @@ function App() {
 
           let destinationAirport = airports?.[0][destinationState];
           let orginAirport = airports?.[0][originState];
-          setFromAirport(orginAirport);
-          setToAirport(destinationAirport);
+          //setFromAirport(orginAirport);
+          //setToAirport(destinationAirport);
+          updateFlightInfo(orginAirport, destinationAirport);
         } else {
-          console.error(`error fetching directions ${result}`);
+          //console.error(`error fetching directions ${result}`);
         }
       }
     );
   };
 
   // *******************************SkyScanner*****************************************
-  function updateFlightInfo() {
-    axios({
+  async function updateFlightInfo(fromAirport, toAirport) {
+    await axios({
       method: "GET",
-      url: `https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/${fromAirport}-sky/${toAirport}-sky/2020-10/2020-10`,
+      url: `https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/${fromAirport}-sky/${toAirport}-sky/2020-09/2020-10`,
       headers: {
         "content-type": "application/octet-stream",
         "x-rapidapi-host":
@@ -92,42 +96,72 @@ function App() {
         setFlightDetail(response.data);
       })
       .catch((error) => {
-        console.log(error);
+        //console.log(error);
       });
   }
   // ************************************Yelp*******************************************
 
-  function updateRestaurent() {
+  async function updateRestaurent() {
     const searchRequest = {
       term: "restaurants",
       // location: `${dir.routes?.[0].legs[0].end_address}`,
       latitude: destination.lat,
       longitude: destination.lng,
-      limit: 5,
+      limit: 10,
       // price: "$$$",
     };
 
     const client = yelp.client(process.env.REACT_APP_YELP_KEY);
 
-    client
+    await client
       .search(searchRequest)
       .then((response) => {
         setYelpRestaurants(response.jsonBody.businesses);
-        //console.log(response.jsonBody.businesses);
+        console.log(response.jsonBody.businesses);
       })
       .catch((e) => {
-        console.log(e);
+        //console.log(e);
       });
+  }
+  //*****************************************Weather***************************** */
+
+  async function updateWeather() {
+    let res = await axios.get(
+      `https://api.openweathermap.org/data/2.5/weather?lat=${destination.lat}&lon=${destination.lng}&units=imperial&appid=${process.env.REACT_APP_WEATHER_KEY}`
+    );
+    console.log(res.data);
+    setWeather(res.data);
+  }
+
+  // ************************************Ticket Master*******************************************
+  async function updateEvents(dir) {
+    let destinationState =
+      dir.routes?.[0].legs[0].end_address
+        .split(", ")
+        .slice(-2)[0]
+        .split(" ")[0]
+        .toString() || "NY";
+    console.log(destinationState);
+    let res = await axios.get(
+      `https://app.ticketmaster.com/discovery/v2/events.json?classificationName=sports,musics&stateCode=${destinationState}&sort=random&apikey=${process.env.REACT_APP_TICKETMASTER_KEY}`
+    );
+    console.log(res.data._embedded.events);
+    setEvents(res.data._embedded.events);
   }
 
   useEffect(() => {
+    console.log(dir, destination);
     updateDirections();
-    updateFlightInfo();
+    //updateFlightInfo();
     updateRestaurent();
+    updateWeather();
+    //updateEvents();
   }, [destination]);
+
   //Google Map Loader
   const MapLoader = withScriptjs(() => Map({ dir }));
   let url = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_KEY}`;
+
   // Return starts here
 
   return (
