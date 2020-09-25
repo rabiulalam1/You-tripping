@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { withScriptjs } from "react-google-maps";
 import axios from "axios";
+import yelp from "yelp-fusion";
 import "./App.css";
 
 //importing Componenets
@@ -23,6 +24,7 @@ function App() {
   const [fromAirport, setFromAirport] = useState("MCO");
   const [toAirport, setToAirport] = useState("JFK");
   const [flightDetail, setFlightDetail] = useState({});
+  const [yelpRestaurants, setYelpRestaurants] = useState({});
 
   //User Location
   function getLocation() {
@@ -76,16 +78,13 @@ function App() {
   function updateFlightInfo() {
     axios({
       method: "GET",
-      url: `https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/${fromAirport}-sky/${toAirport}-sky/2020-09-28`,
+      url: `https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/${fromAirport}-sky/${toAirport}-sky/2020-10/2020-10`,
       headers: {
         "content-type": "application/octet-stream",
         "x-rapidapi-host":
           "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
         "x-rapidapi-key": `${process.env.REACT_APP_RAPIDAPI_KEY}`,
         useQueryString: true,
-      },
-      params: {
-        inboundpartialdate: "2020-09-30",
       },
     })
       .then((response) => {
@@ -96,15 +95,41 @@ function App() {
         console.log(error);
       });
   }
+  // ************************************Yelp*******************************************
+
+  function updateRestaurent() {
+    const searchRequest = {
+      term: "restaurants",
+      // location: `${dir.routes?.[0].legs[0].end_address}`,
+      latitude: destination.lat,
+      longitude: destination.lng,
+      limit: 5,
+      // price: "$$$",
+    };
+
+    const client = yelp.client(process.env.REACT_APP_YELP_KEY);
+
+    client
+      .search(searchRequest)
+      .then((response) => {
+        setYelpRestaurants(response.jsonBody.businesses);
+        //console.log(response.jsonBody.businesses);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }
 
   useEffect(() => {
     updateDirections();
     updateFlightInfo();
+    updateRestaurent();
   }, [destination]);
   //Google Map Loader
   const MapLoader = withScriptjs(() => Map({ dir }));
   let url = `https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_KEY}`;
-  //Return starts here
+  // Return starts here
+
   return (
     <div>
       <ProgrammingQuote />
