@@ -32,7 +32,7 @@ const PlacesAutocomplete = (props) => {
   const handleSelect = ({ description }) => () => {
     // When user selects a place, we can replace the keyword without request data from API
     // by setting the second parameter to "false"
-    //setValue(description, false);
+    setValue(description, false);
     clearSuggestions();
 
     // Get latitude and longitude via utility functions
