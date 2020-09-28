@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { withScriptjs } from "react-google-maps";
 import axios from "axios";
-import yelp from "./yelp-fusion";
+import yelp from "./yelp-fusion/lib";
 import "./App.css";
 
 //importing Componenets
