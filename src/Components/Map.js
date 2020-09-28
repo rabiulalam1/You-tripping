@@ -4,12 +4,13 @@ import {
   GoogleMap,
   DirectionsRenderer,
 } from "react-google-maps";
+import "./Map.css";
 
 function Map({ dir }) {
   const GoogleMapExample = withGoogleMap(() => (
     <GoogleMap
       defaultCenter={{ lat: 40.756795, lng: -73.954298 }}
-      defaultZoom={1}
+      defaultZoom={8}
     >
       <DirectionsRenderer directions={dir} />
     </GoogleMap>
@@ -18,8 +19,8 @@ function Map({ dir }) {
   return (
     <>
       <GoogleMapExample
-        containerElement={<div style={{ height: `500px`, width: `500px` }} />}
-        mapElement={<div style={{ height: `50%` }} />}
+        containerElement={<div className="mapContainer" />}
+        mapElement={<div className="map" />}
       />
     </>
   );

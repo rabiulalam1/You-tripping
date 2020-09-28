@@ -1,4 +1,5 @@
 import React from "react";
+import "./SkyScanner.css";
 
 const SkyScanner = (props) => {
   function createTable() {
@@ -30,7 +31,7 @@ const SkyScanner = (props) => {
   }
 
   return (
-    <div>
+    <div className="tableContainer">
       <h3>Flight Details:</h3>
       <p>
         Flight Prices based on
@@ -39,15 +40,23 @@ const SkyScanner = (props) => {
         {props.flightDetail?.Places?.[0]?.IataCode || "JFK"},
         {props.flightDetail?.Places?.[0]?.CityName || "New York"}
       </p>
-      <table>
-        <tr>
-          <th>Carrier</th>
-          <th>Departure Date</th>
-          <th>Return Date</th>
-          <th>Price</th>
-        </tr>
-        {createTable()}
-      </table>
+      <div className="tableHeader">
+        <table>
+          <thead>
+            <tr>
+              <th>Carrier</th>
+              <th>Departure Date</th>
+              <th>Return Date</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+      <div className="tableContent">
+        <table>
+          <tbody>{createTable()}</tbody>
+        </table>
+      </div>
     </div>
   );
 };

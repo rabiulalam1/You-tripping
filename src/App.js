@@ -185,14 +185,11 @@ function App() {
 
   return (
     <div>
-      <ProgrammingQuote />
+      {/* <ProgrammingQuote /> */}
 
       <PlacesAutocomplete setDestination={setDestination} />
 
-      <MapLoader
-        googleMapURL={url}
-        loadingElement={<div style={{ height: `250px` }} />}
-      />
+      <MapLoader googleMapURL={url} loadingElement={<div />} />
 
       <RouteDetail dir={dir} />
 

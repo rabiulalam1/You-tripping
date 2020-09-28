@@ -1,4 +1,5 @@
 import React from "react";
+import "./Yelp.css";
 
 const Yelp = (props) => {
   function Rating(point) {
@@ -18,31 +19,41 @@ const Yelp = (props) => {
     } else {
       return props.yelp.map((eachRestaurant) => {
         return (
-          <div>
-            <img src={eachRestaurant.image_url} alt="restaurant.img"></img>
-            <h5>
-              {eachRestaurant.name}
-              <Rating>{eachRestaurant.rating}</Rating>
-            </h5>
-            <article>
-              <p>
-                {eachRestaurant.categories.map((catg) => {
-                  return <span>{catg.title}</span>;
-                })}
-              </p>
-              <p>
-                {eachRestaurant.location.display_address[0]},
-                {eachRestaurant.location.display_address[1]}
-              </p>
-              <p>{eachRestaurant.display_phone}</p>
-              <a href={eachRestaurant.url}>Reservation</a>
-            </article>
+          <div className="yelpCard">
+            <div className="yelpFace yelpFace1">
+              <div className="yelpContent">
+                <img src={eachRestaurant.image_url} alt="restaurant.img"></img>
+                <h4>{eachRestaurant.name}</h4>
+              </div>
+            </div>
+            <div className="yelpFace yelpFace2">
+              <div className="yelpContent">
+                <p>
+                  <p>
+                    <Rating>{eachRestaurant.rating}</Rating>
+                  </p>
+                  {eachRestaurant.categories.map((catg) => {
+                    return <span>{catg.title} </span>;
+                  })}
+                </p>
+                <p>
+                  {eachRestaurant.location.display_address[0]},
+                  {eachRestaurant.location.display_address[1]}
+                </p>
+                <p>{eachRestaurant.display_phone}</p>
+                <a href={eachRestaurant.url}>Reservation</a>
+              </div>
+            </div>
           </div>
         );
       });
     }
   }
 
-  return <>{createCards()}</>;
+  return (
+    <div className="yelpBody">
+      <div className="yelpContainer">{createCards()}</div>
+    </div>
+  );
 };
 export default Yelp;

@@ -1,9 +1,10 @@
 import React from "react";
+import "./RouteDetails.css";
 
 const RouteDetails = (props) => {
   console.log("Route Detail: ", props);
   return (
-    <div>
+    <div className="routeContainer">
       <h3>Route Detail:</h3>
       <p>
         Distance : {props.dir.routes?.[0].legs[0].distance.text}, Duration :{" "}

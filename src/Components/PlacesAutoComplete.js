@@ -4,6 +4,7 @@ import usePlacesAutocomplete, {
   getLatLng,
 } from "use-places-autocomplete";
 import useOnclickOutside from "react-cool-onclickoutside";
+import "./PlacesAutoComplete.css";
 
 const PlacesAutocomplete = (props) => {
   const {
@@ -61,16 +62,21 @@ const PlacesAutocomplete = (props) => {
     });
 
   return (
-    <div ref={ref}>
-      <input
-        value={value}
-        onChange={handleInput}
-        disabled={!ready}
-        placeholder="Where are you going?"
-      ></input>
-
-      {/* We can use the "status" to decide whether we should display the dropdown or not */}
-      {status === "OK" && <ul>{renderSuggestions()}</ul>}
+    <div className="searchContent" ref={ref}>
+      <div className="search">
+        <input
+          value={value}
+          onChange={handleInput}
+          disabled={!ready}
+          placeholder="Where are you going?"
+          className="searchInput"
+        ></input>
+        <button class="searchSubmit" aria-label="submit search">
+          <i class="fa fa-search"></i>
+        </button>
+        {/* We can use the "status" to decide whether we should display the dropdown or not */}
+      </div>
+      {status === "OK" && <ul className="searchUl">{renderSuggestions()}</ul>}
     </div>
   );
 };

@@ -1,0 +1,13 @@
+.mapContainer {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-color: #e4e3e3;
+}
+
+.map {
+  height: 80%;
+  width: 75%;
+  border: 5px solid grey;
+  border-radius: 10px;
+}

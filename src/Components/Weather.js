@@ -1,18 +1,44 @@
 import React from "react";
+import "./Weather.css";
 
 const Weather = (props) => {
   return (
-    <div>
-      <h3>Weather:</h3>
-      <p>{props.weather.weather?.[0].description}</p>
-      <ul>
-        <li>Current Temp: {props.weather.main?.temp}</li>
-        <li>Feels Like: {props.weather.main?.feels_like}</li>
-        <li>Humidity: {props.weather.main?.humidity}</li>
-        <li>Wind Speed: {props.weather.wind?.speed}mph</li>
-        <li>Max Temp: {props.weather.main?.temp_max}</li>
-        <li>Min Temp: {props.weather.main?.temp_min}</li>
-      </ul>
+    <div className="weatherContainer">
+      <div className="weatherWidget">
+        <div className="weatherTop">
+          <img
+            src={`http://openweathermap.org/img/w/${props.weather.weather?.[0].icon}.png`}
+            class="weatherIcon img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,| }"
+            alt="weather-icon"
+          />
+          <h5 className="weatherStatus">
+            {props.weather.weather?.[0].description}
+          </h5>
+        </div>
+
+        <div className="weatherMid">
+          <h5 className="weatherCity">{props.weather.name}</h5>
+          <h5 className="weatherDegree">{props.weather.main?.temp}&#176;F</h5>
+        </div>
+        <div className="weatherBottom">
+          <div>
+            <div>
+              Wind Speed <span>{props.weather.wind?.speed}mph</span>
+            </div>
+            <div>
+              Max Temp <span>{props.weather.main?.temp_max}&#176;F</span>
+            </div>
+          </div>
+          <div>
+            <div>
+              Min Temp <span>{props.weather.main?.temp_min}&#176;F</span>
+            </div>
+            <div>
+              Humidity <span>{props.weather.main?.humidity}%</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
