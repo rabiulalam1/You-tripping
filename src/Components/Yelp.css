@@ -1,9 +1,10 @@
 .yelpBody {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: #1e1e1e;
+  background: #00adb5;
 }
 .yelpContainer {
   width: 100vw;
@@ -35,7 +36,7 @@
   transform-origin: bottom;
 }
 .yelpContainer .yelpCard .yelpFace.yelpFace1 img {
-  width: 200px;
+  width: inherit;
   height: 200px;
 }
 .yelpContainer .yelpCard .yelpFace.yelpFace1 h4 {
@@ -46,10 +47,10 @@
 }
 .yelpContainer .yelpCard:hover .yelpFace.yelpFace1 {
   transform: translateY(-100%) rotateX(90deg);
-  background: #ff0057;
+  background: inherit;
 }
 .yelpContainer .yelpCard .yelpFace.yelpFace2 {
-  background: #fff;
+  background: #ff5f40;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -59,4 +60,15 @@
 }
 .yelpContainer .yelpCard:hover .yelpFace.yelpFace2 {
   transform: translateY(0) rotateX(0deg);
+}
+
+.yelpContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.yelpLogo {
+  margin: 10px;
 }

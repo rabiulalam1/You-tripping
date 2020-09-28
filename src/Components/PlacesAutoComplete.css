@@ -1,8 +1,8 @@
 .searchContent {
   position: absolute;
   z-index: 1000;
-  top: 51%;
-  left: 456px;
+  top: 53%;
+  left: 460px;
   background: transparent;
   width: 37vw;
 }
@@ -77,4 +77,6 @@
   list-style: none;
   padding: 10px;
   cursor: pointer;
+
+  color: #ee6352;
 }

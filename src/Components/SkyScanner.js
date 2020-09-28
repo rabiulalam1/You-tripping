@@ -20,10 +20,16 @@ const SkyScanner = (props) => {
       return props.flightDetail.Quotes.map((eachFlight) => {
         return (
           <tr>
-            <td>{eachFlight.OutboundLeg.CarrierIds[0]}</td>
-            <td>{eachFlight.OutboundLeg.DepartureDate}</td>
-            <td>{eachFlight.InboundLeg.DepartureDate}</td>
-            <td>{eachFlight.MinPrice}</td>
+            {props.flightDetail.Carriers.map((eachCarrier) => {
+              if (
+                eachFlight.OutboundLeg.CarrierIds[0] === eachCarrier.CarrierId
+              ) {
+                return <td>{eachCarrier.Name}</td>;
+              }
+            })}
+            <td>{eachFlight.OutboundLeg.DepartureDate.slice(0, 10)}</td>
+            <td>{eachFlight.InboundLeg.DepartureDate.slice(0, 10)}</td>
+            <td>${eachFlight.MinPrice}</td>
           </tr>
         );
       });
@@ -32,14 +38,22 @@ const SkyScanner = (props) => {
 
   return (
     <div className="tableContainer">
-      <h3>Flight Details:</h3>
-      <p>
-        Flight Prices based on
-        {props.flightDetail?.Places?.[1]?.IataCode || "MCO"},
-        {props.Places?.[1]?.CityName || "Orlando"} to
-        {props.flightDetail?.Places?.[0]?.IataCode || "JFK"},
-        {props.flightDetail?.Places?.[0]?.CityName || "New York"}
-      </p>
+      <div className="skyBody">
+        <div className="skyScannerLogo">
+          <img src="./images/skyscanner.png" alt="" />
+        </div>
+
+        <p>
+          <strong>
+            Flight Prices based on{" "}
+            {props.flightDetail?.Places?.[1]?.IataCode || "MCO"},
+            {props.Places?.[1]?.CityName || "Orlando"} to{" "}
+            {props.flightDetail?.Places?.[0]?.IataCode || "JFK"},
+            {props.flightDetail?.Places?.[0]?.CityName || "New York"}
+          </strong>
+        </p>
+      </div>
+
       <div className="tableHeader">
         <table>
           <thead>

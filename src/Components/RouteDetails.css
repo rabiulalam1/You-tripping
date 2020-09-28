@@ -1,4 +1,12 @@
 .routeContainer {
   position: absolute;
   top: 187%;
+  left: 16%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.routeInfo p {
+  font-size: 1.2rem;
 }

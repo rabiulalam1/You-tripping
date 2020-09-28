@@ -71,8 +71,8 @@ const PlacesAutocomplete = (props) => {
           placeholder="Where are you going?"
           className="searchInput"
         ></input>
-        <button class="searchSubmit" aria-label="submit search">
-          <i class="fa fa-search"></i>
+        <button className="searchSubmit" aria-label="submit search">
+          <i className="fa fa-search"></i>
         </button>
         {/* We can use the "status" to decide whether we should display the dropdown or not */}
       </div>

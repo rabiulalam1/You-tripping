@@ -52,6 +52,9 @@ const Yelp = (props) => {
 
   return (
     <div className="yelpBody">
+      <div className="yelpLogo">
+        <img src="./images/yelp.png" alt="" />
+      </div>
       <div className="yelpContainer">{createCards()}</div>
     </div>
   );

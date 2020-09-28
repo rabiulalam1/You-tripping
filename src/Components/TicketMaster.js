@@ -34,6 +34,9 @@ const TicketMaster = (props) => {
 
   return (
     <div className="ticketBody">
+      <div>
+        <img src="./images/ticketmaster.png" alt="" />
+      </div>
       <div className="ticketContainer">{createCards()}</div>
     </div>
   );
