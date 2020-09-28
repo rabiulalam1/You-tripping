@@ -1,4 +1,5 @@
 import React from "react";
+import "./TicketMaster.css";
 
 const TicketMaster = (props) => {
   function createCards() {
@@ -7,10 +8,13 @@ const TicketMaster = (props) => {
     } else {
       return props.events.map((eachEvent) => {
         return (
-          <div>
-            <img src={eachEvent.images[0].url} alt="event pics" />
-            <h5>{eachEvent.name}</h5>
-            <article>
+          <div className="ticketCard">
+            <div className="ticketImg">
+              <img src={eachEvent.images[0].url} alt="event pics" />
+            </div>
+            <div className="ticketContent">
+              <h3>{eachEvent.name}</h3>
+
               <p>
                 {eachEvent.dates.start.localDate}@
                 {eachEvent.dates.start.localTime}
@@ -21,14 +25,18 @@ const TicketMaster = (props) => {
               </p>
               <p>{eachEvent._embedded.venues[0].name}</p>
               <a href={eachEvent.url}>Buy Ticket</a>
-            </article>
+            </div>
           </div>
         );
       });
     }
   }
 
-  return <div>{createCards()}</div>;
+  return (
+    <div className="ticketBody">
+      <div className="ticketContainer">{createCards()}</div>
+    </div>
+  );
 };
 
 export default TicketMaster;

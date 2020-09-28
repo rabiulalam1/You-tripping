@@ -1,0 +1,133 @@
+.ticketBody {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #222;
+}
+.ticketContainer {
+  position: relative;
+  width: 100vw;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin: 10px;
+}
+.ticketContainer .ticketCard {
+  position: relative;
+  height: 250px;
+  background: #fff;
+  display: flex;
+  width: 40%;
+  margin: 30px 0;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+.ticketContainer .ticketCard .ticketImg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #333;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s ease-in-out;
+  overflow: hidden;
+}
+.ticketContainer .ticketCard:hover .ticketImg {
+  width: 150px;
+  height: 150px;
+  left: -75px;
+  background: #333;
+  top: calc(50% - 75px);
+  transition: 0.5s ease-in-out;
+}
+.ticketContainer .ticketCard .ticketImg:before {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  font-size: 6em;
+  color: rgba(255, 255, 255, 0.05);
+  font-weight: 700;
+}
+
+.ticketContainer .ticketCard .ticketImg img {
+  max-width: fit-content;
+  height: inherit;
+  transition: 0.5s ease-in-out;
+}
+.ticketContainer .ticketCard:hover .ticketImg img {
+  max-width: fit-content;
+  height: inherit;
+}
+.ticketContainer .ticketCard .ticketContent {
+  position: absolute;
+  right: 0;
+  width: calc(100% - 75px);
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.ticketContainer .ticketCard .ticketContent h3 {
+  margin-bottom: 5px;
+  font-size: 24px;
+}
+.ticketContainer .ticketCard .ticketContent a {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 5px 10px;
+  background: #333;
+  text-decoration: none;
+  color: #fff;
+  border-radius: 5px;
+}
+.ticketContainer .ticketCard .ticketContent a:hover {
+  background: aqua;
+
+  color: #333;
+}
+@media (max-width: 992px) {
+  .ticketContainer {
+    position: relative;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+  .ticketContainer .ticketCard {
+    width: 400px;
+  }
+}
+@media (max-width: 768px) {
+  .ticketContainer .ticketCard {
+    max-width: 300px;
+    height: auto;
+    flex-direction: column;
+  }
+  .ticketContainer .ticketCard .ticketImg {
+    position: relative;
+  }
+  .ticketContainer .ticketCard .ticketImg,
+  .ticketContainer .ticketCard:hover .ticketImg {
+    width: 100%;
+    height: 200px;
+    left: 0;
+    background: #333;
+  }
+  .ticketContainer .ticketCard .ticketImg img,
+  .ticketContainer .ticketCard:hover .ticketImg img {
+    max-width: 100px;
+  }
+  .ticketContainer .ticketCard .ticketContent {
+    position: relative;
+    width: 100%;
+  }
+}

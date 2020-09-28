@@ -1,4 +1,5 @@
 import React from "react";
+import "./Covid19.css";
 
 const Covid19 = (props) => {
   function createCard() {
@@ -6,7 +7,7 @@ const Covid19 = (props) => {
       return <div>Data not Available</div>;
     } else {
       return (
-        <>
+        <div>
           <h5>{props.covid19.state} State</h5>
           <article>
             <p>Total Cases: {props.covid19.positive}</p>
@@ -16,14 +17,22 @@ const Covid19 = (props) => {
             <p>In ICU Currently: {props.covid19.inIcuCurrently}</p>
             <p>Last Update On: {props.covid19.lastUpdateEt}pm</p>
           </article>
-        </>
+        </div>
       );
     }
   }
   return (
-    <div>
-      <h3>Lastest Covid 19 Data</h3>
-      <div>{createCard()}</div>
+    <div className="covidBody">
+      <div className="covidSection">
+        <div className="covidCard">
+          <div className="covidBox">
+            <div className="covidImgBx">
+              <img src="./images/covid.png" alt="" />
+            </div>
+            <div className="covidContentBx">{createCard()}</div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
