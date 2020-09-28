@@ -146,7 +146,8 @@ const createClient = (apiKey, options) => {
   return new YelpClient(apiKey, options);
 };
 
-module.exports = {
-  client: createClient,
-};
-console.log("Helllllp");
+// module.exports = {
+//   client: createClient,
+// };
+
+export default { client: createClient };
