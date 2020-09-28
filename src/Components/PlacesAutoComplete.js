@@ -68,7 +68,7 @@ const PlacesAutocomplete = (props) => {
           value={value}
           onChange={handleInput}
           disabled={!ready}
-          placeholder="Where are you going?"
+          placeholder="Where are you tripping?"
           className="searchInput"
         ></input>
         <button className="searchSubmit" aria-label="submit search">
