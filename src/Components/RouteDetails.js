@@ -2,7 +2,7 @@ import React from "react";
 import "./RouteDetails.css";
 
 const RouteDetails = (props) => {
-  console.log("Route Detail: ", props);
+  //console.log("Route Detail: ", props);
   return (
     <div className="routeContainer">
       <img src="./images/google-logo.png" alt="" />

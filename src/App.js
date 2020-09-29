@@ -27,8 +27,6 @@ function App() {
     lng: -73.954298,
   });
   const [flightDetail, setFlightDetail] = useState({});
-  // const [originAirport, setOriginAirport] = useState("MCO")
-  // const [destinationAirport, setDestinationAirport] = useState("JFK")
   const [yelpRestaurants, setYelpRestaurants] = useState({});
   const [weather, setWeather] = useState({});
   const [events, setEvents] = useState({});
@@ -76,7 +74,7 @@ function App() {
           let orginAirport = airports?.[0][originState] || "MCO";
           updateFlightInfo(orginAirport, destinationAirport);
         } else {
-          //console.error(`error fetching directions ${result}`);
+          console.error(`error fetching directions ${result}`);
         }
       }
     );
@@ -96,9 +94,9 @@ function App() {
         useQueryString: true,
       },
     })
-      .then((response) => {
-        console.log("SkyScanner :", response.data);
-        setFlightDetail(response.data);
+      .then((res) => {
+        //console.log("SkyScanner :", res.data);
+        setFlightDetail(res.data);
       })
       .catch((error) => {
         console.log(error);
@@ -123,10 +121,10 @@ function App() {
       .search(searchRequest)
       .then((response) => {
         setYelpRestaurants(response.jsonBody.businesses);
-        console.log("Yelp Reataurant :", response.jsonBody.businesses);
+        // console.log("Yelp Reataurant :", response.jsonBody.businesses);
       })
       .catch((e) => {
-        //console.log(e);
+        console.log(e);
       });
   }
 
@@ -136,7 +134,7 @@ function App() {
     let res = await axios.get(
       `https://api.openweathermap.org/data/2.5/weather?lat=${destination.lat}&lon=${destination.lng}&units=imperial&appid=${process.env.REACT_APP_WEATHER_KEY}`
     );
-    console.log("Weather: ", res.data);
+    //console.log("Weather: ", res.data);
     setWeather(res.data);
   }
 
@@ -153,7 +151,7 @@ function App() {
     let res = await axios.get(
       `https://app.ticketmaster.com/discovery/v2/events.json?classificationName=sports,musics&stateCode=${destinationState}&sort=random&apikey=${process.env.REACT_APP_TICKETMASTER_KEY}`
     );
-    console.log("TicketMaster Event: ", res.data._embedded.events);
+    //console.log("TicketMaster Event: ", res.data._embedded.events);
     setEvents(res.data._embedded.events);
     updateCovid(destinationState);
   }
@@ -164,7 +162,7 @@ function App() {
     let res = await axios.get(
       `https://api.covidtracking.com/v1/states/${destinationState}/current.json`
     );
-    console.log("Covid19: ", res.data);
+    //console.log("Covid19: ", res.data);
     setCovid19(res.data);
   }
 
