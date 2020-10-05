@@ -85,7 +85,7 @@ function App() {
   async function updateFlightInfo(fromAirport, toAirport) {
     await axios({
       method: "GET",
-      url: `https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/${fromAirport}-sky/${toAirport}-sky/2020-09/2020-10`,
+      url: `https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/${fromAirport}-sky/${toAirport}-sky/2020-10/2020-11`,
       headers: {
         "content-type": "application/octet-stream",
         "x-rapidapi-host":
