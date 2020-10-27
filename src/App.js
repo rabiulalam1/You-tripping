@@ -83,9 +83,13 @@ function App() {
   // *******************************SkyScanner*****************************************
 
   async function updateFlightInfo(fromAirport, toAirport) {
+    let date = new Date();
+
     await axios({
       method: "GET",
-      url: `https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/${fromAirport}-sky/${toAirport}-sky/2020-10/2020-11`,
+      url: `https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/${fromAirport}-sky/${toAirport}-sky/${
+        date.getFullYear() + "-" + (date.getMonth() + 1)
+      }/${date.getFullYear() + "-" + (date.getMonth() + 2)}`,
       headers: {
         "content-type": "application/octet-stream",
         "x-rapidapi-host":
