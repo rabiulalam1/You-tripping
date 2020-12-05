@@ -14,7 +14,7 @@
   flex-direction: column;
 }
 .weatherWidget::after {
-  content: "";
+  content: '';
   position: absolute;
   border-radius: 20px;
   top: 4px;
@@ -24,7 +24,7 @@
   background: rgba(17, 17, 17, 0.247);
 }
 .weatherWidget::before {
-  content: "";
+  content: '';
   position: absolute;
   border-radius: 20px;
   top: 0;

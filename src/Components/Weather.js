@@ -8,7 +8,7 @@ const Weather = (props) => {
         <div className="weatherTop">
           <img
             src={`http://openweathermap.org/img/w/${props.weather.weather?.[0].icon}.png`}
-            class="weatherIcon img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,| }"
+            className="weatherIcon img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,| }"
             alt="weather-icon"
           />
           <h5 className="weatherStatus">
