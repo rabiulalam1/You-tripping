@@ -89,7 +89,7 @@ function App() {
       method: "GET",
       url: `https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/${fromAirport}-sky/${toAirport}-sky/${
         date.getFullYear() + "-" + (date.getMonth() + 1)
-      }/2021-01`,
+      }/${date.getFullYear() + "-" + (date.getMonth() + 2)}`,
       headers: {
         "content-type": "application/octet-stream",
         "x-rapidapi-host":
