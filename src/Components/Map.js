@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 import {
   withGoogleMap,
   GoogleMap,
   DirectionsRenderer,
-} from "react-google-maps";
-import "./Map.css";
+} from 'react-google-maps';
+import './Map.css';
 
 function Map({ dir }) {
   const GoogleMapExample = withGoogleMap(() => (
@@ -17,12 +17,12 @@ function Map({ dir }) {
   ));
 
   return (
-    <>
+    <div>
       <GoogleMapExample
         containerElement={<div className="mapContainer" />}
         mapElement={<div className="map" />}
       />
-    </>
+    </div>
   );
 }
 

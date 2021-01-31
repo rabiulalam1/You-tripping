@@ -1,10 +1,10 @@
-import React from "react";
+import React from 'react';
 import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
-} from "use-places-autocomplete";
-import useOnclickOutside from "react-cool-onclickoutside";
-import "./PlacesAutoComplete.css";
+} from 'use-places-autocomplete';
+import useOnclickOutside from 'react-cool-onclickoutside';
+import './PlacesAutoComplete.css';
 
 const PlacesAutocomplete = (props) => {
   const {
@@ -43,12 +43,13 @@ const PlacesAutocomplete = (props) => {
         props.setDestination({ lat, lng });
       })
       .catch((error) => {
-        console.log("Error: ", error);
+        console.log('Error: ', error);
       });
   };
 
   const renderSuggestions = () =>
     data.map((suggestion) => {
+      console.log(suggestion);
       const {
         id,
         structured_formatting: { main_text, secondary_text },
@@ -76,7 +77,7 @@ const PlacesAutocomplete = (props) => {
         </button>
         {/* We can use the "status" to decide whether we should display the dropdown or not */}
       </div>
-      {status === "OK" && <ul className="searchUl">{renderSuggestions()}</ul>}
+      {status === 'OK' && <ul className="searchUl">{renderSuggestions()}</ul>}
     </div>
   );
 };

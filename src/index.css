@@ -5,13 +5,13 @@
 }
 body {
   margin: 0;
-  font-family: "Maven Pro", sans-serif;
+  font-family: 'Maven Pro', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
@@ -55,9 +55,4 @@ code {
     opacity: 0;
     transform: scale(3);
   }
-}
-
-table {
-  width: 100%;
-  table-layout: fixed;
 }

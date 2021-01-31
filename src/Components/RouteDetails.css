@@ -1,12 +1,16 @@
 .routeContainer {
   position: absolute;
-  top: 187%;
-  left: 16%;
+  min-height: fit-content;
+  min-width: fit-content;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  font-size: 16px;
+  color: white;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.routeInfo p {
-  font-size: 1.2rem;
 }

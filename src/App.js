@@ -1,23 +1,23 @@
 /*global google*/
-import React, { useState, useEffect } from "react";
-import { withScriptjs } from "react-google-maps";
-import axios from "axios";
-import yelp from "./yelp-fusion/lib";
-import "./App.css";
+import React, { useState, useEffect } from 'react';
+import { withScriptjs } from 'react-google-maps';
+import axios from 'axios';
+import yelp from './yelp-fusion/lib';
+import './App.css';
 
 //importing Componenets
-import ProgrammingQuote from "./Components/Programming-quote";
-import Map from "./Components/Map";
-import PlacesAutocomplete from "./Components/PlacesAutoComplete";
-import RouteDetail from "./Components/RouteDetails";
-import Weather from "./Components/Weather";
-import SkyScanner from "./Components/SkyScanner";
-import Yelp from "./Components/Yelp";
-import TicketMaster from "./Components/TicketMaster";
-import Covid19 from "./Components/Covid19";
+import ProgrammingQuote from './Components/Programming-quote';
+import Map from './Components/Map';
+import PlacesAutocomplete from './Components/PlacesAutoComplete';
+import RouteDetail from './Components/RouteDetails';
+import Weather from './Components/Weather';
+import SkyScanner from './Components/SkyScanner';
+import Yelp from './Components/Yelp';
+import TicketMaster from './Components/TicketMaster';
+import Covid19 from './Components/Covid19';
 
 //importing local JSON
-import airports from "./airports.json";
+import airports from './airports.json';
 
 function App() {
   const [dir, setDir] = useState({});
@@ -60,18 +60,18 @@ function App() {
           setDir(result);
           updateEvents(result);
           let originState = result.routes?.[0].legs[0].start_address
-            .split(", ")
+            .split(', ')
             .slice(-2)[0]
-            .split(" ")[0]
+            .split(' ')[0]
             .toString();
           let destinationState = result.routes?.[0].legs[0].end_address
-            .split(", ")
+            .split(', ')
             .slice(-2)[0]
-            .split(" ")[0]
+            .split(' ')[0]
             .toString();
 
-          let destinationAirport = airports?.[0][destinationState] || "JFK";
-          let orginAirport = airports?.[0][originState] || "MCO";
+          let destinationAirport = airports?.[0][destinationState] || 'JFK';
+          let orginAirport = airports?.[0][originState] || 'MCO';
           updateFlightInfo(orginAirport, destinationAirport);
         } else {
           console.error(`error fetching directions ${result}`);
@@ -86,15 +86,15 @@ function App() {
     let date = new Date();
     // ${date.getFullYear() + "-" + (date.getMonth() + 2)}
     await axios({
-      method: "GET",
+      method: 'GET',
       url: `https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/${fromAirport}-sky/${toAirport}-sky/${
-        date.getFullYear() + "-" + (date.getMonth() + 1)
-      }/${date.getFullYear() + "-" + (date.getMonth() + 2)}`,
+        date.getFullYear() + '-' + (date.getMonth() + 2)
+      }/${date.getFullYear() + '-' + (date.getMonth() + 2)}`,
       headers: {
-        "content-type": "application/octet-stream",
-        "x-rapidapi-host":
-          "skyscanner-skyscanner-flight-search-v1.p.rapidapi.com",
-        "x-rapidapi-key": `${process.env.REACT_APP_RAPIDAPI_KEY}`,
+        'content-type': 'application/octet-stream',
+        'x-rapidapi-host':
+          'skyscanner-skyscanner-flight-search-v1.p.rapidapi.com',
+        'x-rapidapi-key': `${process.env.REACT_APP_RAPIDAPI_KEY}`,
         useQueryString: true,
       },
     })
@@ -111,7 +111,7 @@ function App() {
 
   async function updateRestaurent() {
     const searchRequest = {
-      term: "restaurants",
+      term: 'restaurants',
       // location: `${dir.routes?.[0].legs[0].end_address}`,
       latitude: destination.lat,
       longitude: destination.lng,
@@ -147,10 +147,10 @@ function App() {
   async function updateEvents(dir) {
     let destinationState =
       dir.routes?.[0].legs[0].end_address
-        .split(", ")
+        .split(', ')
         .slice(-2)[0]
-        .split(" ")[0]
-        .toString() || "NY";
+        .split(' ')[0]
+        .toString() || 'NY';
     //console.log(destinationState);
     let res = await axios.get(
       `https://app.ticketmaster.com/discovery/v2/events.json?classificationName=sports,musics&stateCode=${destinationState}&sort=random&apikey=${process.env.REACT_APP_TICKETMASTER_KEY}`
@@ -190,14 +190,16 @@ function App() {
       {/* <ProgrammingQuote /> */}
 
       <PlacesAutocomplete setDestination={setDestination} />
+      <div className="mapSection">
+        <MapLoader
+          style={{ position: 'relative' }}
+          googleMapURL={url}
+          loadingElement={<div />}
+        />
+        <RouteDetail dir={dir} />
+      </div>
 
-        <MapLoader googleMapURL={url} loadingElement={<div />} />
-
-<RouteDetail dir={dir} />
-
-        <Weather weather={weather} />
-
-      
+      <Weather weather={weather} />
 
       <SkyScanner flightDetail={flightDetail} />
 
