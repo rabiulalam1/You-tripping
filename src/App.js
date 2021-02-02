@@ -88,18 +88,21 @@ function App() {
     await axios({
       method: 'GET',
       url: `https://skyscanner-skyscanner-flight-search-v1.p.rapidapi.com/apiservices/browsequotes/v1.0/US/USD/en-US/${fromAirport}-sky/${toAirport}-sky/${
-        date.getFullYear() + '-' + (date.getMonth() + 2)
-      }/${date.getFullYear() + '-' + (date.getMonth() + 2)}`,
+        date.getFullYear() + '-0' + (date.getMonth() + 1)
+      }`,
+      params: {
+        inboundpartialdate: `${
+          date.getFullYear() + '-0' + (date.getMonth() + 2)
+        }`,
+      },
       headers: {
-        'content-type': 'application/octet-stream',
         'x-rapidapi-host':
           'skyscanner-skyscanner-flight-search-v1.p.rapidapi.com',
         'x-rapidapi-key': `${process.env.REACT_APP_RAPIDAPI_KEY}`,
-        useQueryString: true,
       },
     })
       .then((res) => {
-        //console.log("SkyScanner :", res.data);
+        console.log('SkyScanner :', res.data);
         setFlightDetail(res.data);
       })
       .catch((error) => {

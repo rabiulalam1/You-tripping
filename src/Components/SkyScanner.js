@@ -1,5 +1,5 @@
-import React from "react";
-import "./SkyScanner.css";
+import React from 'react';
+import './SkyScanner.css';
 
 const SkyScanner = (props) => {
   function createTable() {
@@ -7,7 +7,7 @@ const SkyScanner = (props) => {
       props.flightDetail.Quotes == 0 ||
       props.flightDetail.Quotes === undefined
     ) {
-      console.log("No Flight Available");
+      console.log('No Flight Available');
       return (
         <tr>
           <td>Unavailabe</td>
@@ -28,7 +28,7 @@ const SkyScanner = (props) => {
               }
             })}
             <td>{eachFlight.OutboundLeg.DepartureDate.slice(0, 10)}</td>
-            <td>{eachFlight.InboundLeg.DepartureDate.slice(0, 10)}</td>
+            <td>{eachFlight.Direct ? 'Yes' : 'No'}</td>
             <td>${eachFlight.MinPrice}</td>
           </tr>
         );
@@ -45,29 +45,26 @@ const SkyScanner = (props) => {
 
         <p>
           <strong>
-            Flight Prices based on{" "}
-            {props.flightDetail?.Places?.[1]?.IataCode || "MCO"},
-            {props.Places?.[1]?.CityName || "Orlando"} to{" "}
-            {props.flightDetail?.Places?.[0]?.IataCode || "JFK"},
-            {props.flightDetail?.Places?.[0]?.CityName || "New York"}
+            Flight Prices based on{' '}
+            {props.flightDetail?.Places?.[1]?.IataCode || 'MCO'},
+            {props.Places?.[1]?.CityName || 'Orlando'} to{' '}
+            {props.flightDetail?.Places?.[0]?.IataCode || 'JFK'},
+            {props.flightDetail?.Places?.[0]?.CityName || 'New York'}
           </strong>
         </p>
       </div>
 
-      <div className="tableHeader">
-        <table>
+      <div>
+        <table className="tableHeader">
           <thead>
             <tr>
               <th>Carrier</th>
               <th>Departure Date</th>
-              <th>Return Date</th>
+              <th>Direct Flight</th>
               <th>Price</th>
             </tr>
           </thead>
-        </table>
-      </div>
-      <div className="tableContent">
-        <table>
+
           <tbody>{createTable()}</tbody>
         </table>
       </div>

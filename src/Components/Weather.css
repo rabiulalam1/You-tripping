@@ -28,7 +28,7 @@
 
 .weather-two-one img {
   transform: scale(1.5);
-  margin-right: 5px;
+  margin-right: 1rem;
 }
 
 .weather-two-two {
@@ -48,91 +48,3 @@
   flex-direction: column;
   align-items: center;
 }
-
-/* .weatherWidget::after {
-  content: '';
-  position: absolute;
-  border-radius: 20px;
-  top: 4px;
-  bottom: 4px;
-  left: 4px;
-  right: 4px;
-  background: rgba(17, 17, 17, 0.247);
-}
-.weatherWidget::before {
-  content: '';
-  position: absolute;
-  border-radius: 20px;
-  top: 0;
-  left: 0;
-  width: 50%;
-  height: 100%;
-  pointer-events: none;
-  background: rgba(255, 255, 255, 0.02);
-} */
-
-/* .weatherTop {
-  position: absolute;
-  left: 50%;
-  width: 200px;
-}
-
-.weatherMid {
-  position: absolute;
-  width: 200px;
-  color: #900d0d;
-  margin: 50px 0;
-  top: 35%;
-  left: 25%;
-}
-
-.weatherIcon {
-  width: 100%;
-  margin-bottom: -30px;
-  display: block;
-  transform: translateX(-45%);
-}
-
-.weatherStatus {
-  color: #fff;
-  text-align: center;
-  transform: translateX(-45%);
-}
-
-.weatherWidget .weatherMid .weatherCity {
-  font-size: 1.5em;
-  text-align: center;
-  margin: 0;
-  text-shadow: 1px 1px 5px #707070;
-}
-
-.weatherWidget .weatherMid .weatherDegree {
-  font-size: 3em;
-  font-weight: bold;
-  text-align: center;
-  margin: 0;
-  text-shadow: 1px 1px 5px #707070;
-}
-
-.weatherWidget .weatherBottom {
-  width: 100%;
-  position: absolute;
-  bottom: 78px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  color: #fff;
-}
-
-.weatehrWidget .weatherBottom div {
-  margin: 10px 55px;
-  text-align: center;
-  line-height: 100%;
-  font-size: 0.83em;
-  text-shadow: 1px 1px 5px #707070;
-}
-
-.weatherBottom div span {
-  text-align: center;
-  display: block;
-} */

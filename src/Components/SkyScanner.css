@@ -6,20 +6,20 @@
   justify-content: center;
   align-items: center;
 }
-.tableHeeader {
-  background-color: rgba(255, 255, 255, 0.3);
-}
-.tableContent {
-  height: 500px;
+
+.tableHeader {
+  width: 85vw;
+  max-height: 80vh;
   overflow-x: auto;
   margin-top: 0px;
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 th {
+  border: 1px solid #dddddd;
   padding: 20px 15px;
   text-align: center;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 1rem;
   color: #204051;
   text-transform: uppercase;
 }
