@@ -17,12 +17,7 @@ const SkyScanner = (props) => {
         </tr>
       );
     } else {
-      if (props.flightDetail.Quotes.length > 10) {
-        return (
-          props.flightDetail.Quotes == props.flightDetail.Quotes.slice(0, 10)
-        );
-      }
-      return props.flightDetail.Quotes.map((eachFlight) => {
+      return props.flightDetail.Quotes.slice(0, 10).map((eachFlight) => {
         return (
           <tr>
             {props.flightDetail.Carriers.map((eachCarrier) => {
