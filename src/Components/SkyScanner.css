@@ -1,6 +1,5 @@
 .tableContainer {
   background-color: #eeeeee;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -9,7 +8,6 @@
 
 .tableHeader {
   width: 85vw;
-  max-height: 80vh;
   overflow-x: auto;
   margin-top: 0px;
   border: 1px solid rgba(255, 255, 255, 0.3);
