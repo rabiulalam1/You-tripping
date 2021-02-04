@@ -49,7 +49,6 @@ const PlacesAutocomplete = (props) => {
 
   const renderSuggestions = () =>
     data.map((suggestion) => {
-      console.log(suggestion);
       const {
         id,
         structured_formatting: { main_text, secondary_text },

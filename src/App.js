@@ -2,7 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import { withScriptjs } from 'react-google-maps';
 import axios from 'axios';
-import yelp from './yelp-fusion/lib';
+import yelp from 'yelp-fusion';
+
 import './App.css';
 
 //importing Componenets
@@ -33,20 +34,19 @@ function App() {
   const [covid19, setCovid19] = useState({});
 
   //User Location
-  function getLocation() {
+  const getLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition);
-    } else {
     }
-  }
-  getLocation();
-  function showPosition(position) {
+  };
+
+  const showPosition = (position) => {
     setOrigin({
       lat: position.coords.latitude,
       lng: position.coords.longitude,
     });
-  }
-
+  };
+  getLocation();
   const updateDirections = () => {
     const directionsService = new google.maps.DirectionsService();
     directionsService.route(
@@ -82,7 +82,7 @@ function App() {
 
   // *******************************SkyScanner*****************************************
 
-  async function updateFlightInfo(fromAirport, toAirport) {
+  const updateFlightInfo = async (fromAirport, toAirport) => {
     let date = new Date();
     // ${date.getFullYear() + "-" + (date.getMonth() + 2)}
     await axios({
@@ -102,17 +102,16 @@ function App() {
       },
     })
       .then((res) => {
-        console.log('SkyScanner :', res.data);
         setFlightDetail(res.data);
       })
       .catch((error) => {
         console.log(error);
       });
-  }
+  };
 
   // ************************************Yelp*******************************************
 
-  async function updateRestaurent() {
+  const updateRestaurent = async () => {
     const searchRequest = {
       term: 'restaurants',
       // location: `${dir.routes?.[0].legs[0].end_address}`,
@@ -128,58 +127,54 @@ function App() {
       .search(searchRequest)
       .then((response) => {
         setYelpRestaurants(response.jsonBody.businesses);
-        // console.log("Yelp Reataurant :", response.jsonBody.businesses);
       })
       .catch((e) => {
         console.log(e);
       });
-  }
+  };
 
   //*****************************************Weather***************************** */
 
-  async function updateWeather() {
+  const updateWeather = async () => {
     let res = await axios.get(
       `https://api.openweathermap.org/data/2.5/weather?lat=${destination.lat}&lon=${destination.lng}&units=imperial&appid=${process.env.REACT_APP_WEATHER_KEY}`
     );
-    //console.log("Weather: ", res.data);
+
     setWeather(res.data);
-  }
+  };
 
   // ************************************Ticket Master*******************************************
 
-  async function updateEvents(dir) {
+  const updateEvents = async (dir) => {
     let destinationState =
       dir.routes?.[0].legs[0].end_address
         .split(', ')
         .slice(-2)[0]
         .split(' ')[0]
         .toString() || 'NY';
-    //console.log(destinationState);
+
     let res = await axios.get(
       `https://app.ticketmaster.com/discovery/v2/events.json?classificationName=sports,musics&stateCode=${destinationState}&sort=random&apikey=${process.env.REACT_APP_TICKETMASTER_KEY}`
     );
-    //console.log("TicketMaster Event: ", res.data._embedded.events);
+
     setEvents(res.data._embedded.events);
     updateCovid(destinationState);
-  }
+  };
 
   //*****************************************Covid-19***************************** */
 
-  async function updateCovid(destinationState) {
+  const updateCovid = async (destinationState) => {
     let res = await axios.get(
       `https://api.covidtracking.com/v1/states/${destinationState}/current.json`
     );
-    //console.log("Covid19: ", res.data);
+
     setCovid19(res.data);
-  }
+  };
 
   useEffect(() => {
-    //console.log(dir, destination);
     updateDirections();
-    //updateFlightInfo();
     updateRestaurent();
     updateWeather();
-    //updateEvents();
   }, [destination]);
 
   //Google Map Loader

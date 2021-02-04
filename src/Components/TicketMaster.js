@@ -1,9 +1,9 @@
-import React from "react";
-import "./TicketMaster.css";
+import React from 'react';
+import './TicketMaster.css';
 
 const TicketMaster = (props) => {
   function createCards() {
-    if (JSON.stringify(props.events) === "{}") {
+    if (JSON.stringify(props.events) === '{}') {
       return <div>Events not Available</div>;
     } else {
       return props.events.map((eachEvent) => {

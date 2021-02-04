@@ -7,7 +7,6 @@ const SkyScanner = (props) => {
       props.flightDetail.Quotes == 0 ||
       props.flightDetail.Quotes === undefined
     ) {
-      console.log('No Flight Available');
       return (
         <tr>
           <td>Unavailabe</td>

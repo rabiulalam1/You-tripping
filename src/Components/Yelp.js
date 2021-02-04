@@ -1,20 +1,20 @@
-import React from "react";
-import "./Yelp.css";
+import React from 'react';
+import './Yelp.css';
 
 const Yelp = (props) => {
   function Rating(point) {
-    let result = "";
+    let result = '';
     for (let i = 0; i < 5; i++) {
       if (i < Math.round(Number(point.children))) {
-        result += "★";
+        result += '★';
       } else {
-        result += "☆";
+        result += '☆';
       }
     }
     return result;
   }
   function createCards() {
-    if (JSON.stringify(props.yelp) === "{}") {
+    if (JSON.stringify(props.yelp) === '{}') {
       return <div>Restaurants Not Available</div>;
     } else {
       return props.yelp.map((eachRestaurant) => {
