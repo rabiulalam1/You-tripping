@@ -2,7 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import { withScriptjs } from 'react-google-maps';
 import axios from 'axios';
-import yelp from 'yelp-fusion';
+// import yelp from 'yelp-fusion';
+import yelp from './yelp-fusion/lib';
 
 import './App.css';
 
@@ -111,20 +112,36 @@ function App() {
 
   // ************************************Yelp*******************************************
 
-  const updateRestaurent = async () => {
-    const searchRequest = {
-      term: 'restaurants',
-      // location: `${dir.routes?.[0].legs[0].end_address}`,
-      latitude: destination.lat,
-      longitude: destination.lng,
-      limit: 10,
-      // price: "$$$",
-    };
+  // const updateRestaurent = async () => {
+  //   const searchRequest = {
+  //     term: 'restaurants',
+  //     // location: `${dir.routes?.[0].legs[0].end_address}`,
+  //     latitude: destination.lat,
+  //     longitude: destination.lng,
+  //     limit: 10,
+  //     // price: "$$$",
+  //   };
 
+  //   const client = yelp.client(process.env.REACT_APP_YELP_KEY);
+
+  //   await client
+  //     .search(searchRequest)
+  //     .then((response) => {
+  //       setYelpRestaurants(response.jsonBody.businesses);
+  //     })
+  //     .catch((e) => {
+  //       console.log(e);
+  //     });
+  // };
+  const updateRestaurent = async () => {
     const client = yelp.client(process.env.REACT_APP_YELP_KEY);
 
     await client
-      .search(searchRequest)
+      .search({
+        term: 'restaurants',
+        latitude: destination.lat,
+        longitude: destination.lng,
+      })
       .then((response) => {
         setYelpRestaurants(response.jsonBody.businesses);
       })
@@ -132,7 +149,6 @@ function App() {
         console.log(e);
       });
   };
-
   //*****************************************Weather***************************** */
 
   const updateWeather = async () => {
