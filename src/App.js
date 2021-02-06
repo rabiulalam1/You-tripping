@@ -112,27 +112,6 @@ function App() {
 
   // ************************************Yelp*******************************************
 
-  // const updateRestaurent = async () => {
-  //   const searchRequest = {
-  //     term: 'restaurants',
-  //     // location: `${dir.routes?.[0].legs[0].end_address}`,
-  //     latitude: destination.lat,
-  //     longitude: destination.lng,
-  //     limit: 10,
-  //     // price: "$$$",
-  //   };
-
-  //   const client = yelp.client(process.env.REACT_APP_YELP_KEY);
-
-  //   await client
-  //     .search(searchRequest)
-  //     .then((response) => {
-  //       setYelpRestaurants(response.jsonBody.businesses);
-  //     })
-  //     .catch((e) => {
-  //       console.log(e);
-  //     });
-  // };
   const updateRestaurent = async () => {
     const client = yelp.client(process.env.REACT_APP_YELP_KEY);
 
