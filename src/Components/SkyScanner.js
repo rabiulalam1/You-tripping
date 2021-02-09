@@ -3,10 +3,7 @@ import './SkyScanner.css';
 
 const SkyScanner = (props) => {
   function createTable() {
-    if (
-      props.flightDetail.Quotes == 0 ||
-      props.flightDetail.Quotes === undefined
-    ) {
+    if (!props.flightDetail.Quotes) {
       return (
         <tr>
           <td>Unavailabe</td>
