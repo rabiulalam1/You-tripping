@@ -1,13 +1,13 @@
-"use strict";
+'use strict';
 
-const _send = require("@tonybadguy/call-me-maybe");
+const _send = require('@tonybadguy/call-me-maybe');
 
 class YelpClient {
   constructor(apiKey, options) {
     this.apiKey = apiKey;
     this.options = {};
 
-    if (typeof options !== "undefined") {
+    if (typeof options !== 'undefined') {
       this.options = options;
     }
   }
@@ -22,7 +22,7 @@ class YelpClient {
   search(parameters) {
     return this.send({
       url:
-        "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search",
+        'https://iron-cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search',
       query: parameters,
       bearerToken: this.apiKey,
     });
@@ -31,7 +31,7 @@ class YelpClient {
   phoneSearch(parameters) {
     return this.send({
       url:
-        "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search/phone",
+        'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search/phone',
       query: parameters,
       bearerToken: this.apiKey,
     });
@@ -40,7 +40,7 @@ class YelpClient {
   transactionSearch(transactionType, parameters) {
     return this.send({
       url:
-        "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/transactions/{transaction_type}/search",
+        'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/transactions/{transaction_type}/search',
       urlParams: {
         transaction_type: transactionType,
       },
@@ -52,7 +52,7 @@ class YelpClient {
   business(id) {
     return this.send({
       url:
-        "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/{id}",
+        'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/{id}',
       urlParams: {
         id: id,
       },
@@ -63,7 +63,7 @@ class YelpClient {
   reviews(businessId) {
     return this.send({
       url:
-        "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/{id}/reviews",
+        'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/{id}/reviews',
       urlParams: {
         id: businessId,
       },
@@ -74,7 +74,7 @@ class YelpClient {
   autocomplete(parameters) {
     return this.send({
       url:
-        "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/autocomplete",
+        'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/autocomplete',
       query: parameters,
       bearerToken: this.apiKey,
     });
@@ -83,7 +83,7 @@ class YelpClient {
   businessMatch(parameters) {
     return this.send({
       url:
-        "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/matches",
+        'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/matches',
       query: parameters,
       bearerToken: this.apiKey,
     });
@@ -94,7 +94,7 @@ class YelpClient {
   eventLookup(eventId, parameters) {
     return this.send({
       url:
-        "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/events/{id}",
+        'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/events/{id}',
       urlParams: {
         id: eventId,
       },
@@ -105,7 +105,7 @@ class YelpClient {
 
   eventSearch(parameters) {
     return this.send({
-      url: "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/events",
+      url: 'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/events',
       query: parameters,
       bearerToken: this.apiKey,
     });
@@ -114,7 +114,7 @@ class YelpClient {
   featuredEvent(parameters) {
     return this.send({
       url:
-        "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/events/featured",
+        'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/events/featured',
       query: parameters,
       bearerToken: this.apiKey,
     });
@@ -125,7 +125,7 @@ class YelpClient {
   allCategories() {
     return this.send({
       url:
-        "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/categories",
+        'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/categories',
       bearerToken: this.apiKey,
     });
   }
@@ -133,7 +133,7 @@ class YelpClient {
   categoryDetails(alias) {
     return this.send({
       url:
-        "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/categories/{alias}",
+        'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/categories/{alias}',
       urlParams: {
         alias: alias,
       },
